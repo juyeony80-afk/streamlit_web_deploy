@@ -11,21 +11,15 @@ from gtts import gTTS
 st.title("연습용 미니 앱 - 약 스캔")
 
 # ---------------------------------------------------------
-# 서버 주소 설정 (백엔드 준비 전에는 로컬 mock 서버로 테스트)
+# 서버 주소 설정
+# ⚠️ 백엔드 주소가 바뀌면 이 한 줄만 수정하면 돼요.
+# 지금은 사설 IP라 로컬 네트워크 안에서만 접속 가능 → 배포 후에는
+# 백엔드가 공인 주소(도메인 또는 공개 IP)를 갖게 되면 그 주소로 교체 필요.
 # ---------------------------------------------------------
+BASE_URL = "https://medicinemisuseprevention.onrender.com"
+
 with st.sidebar:
-    st.subheader("⚙️ 서버 설정")
-    server_choice = st.radio(
-        "연결할 서버",
-        ["🧪 로컬 mock 서버 (테스트용)", "🌐 실제 백엔드 서버"],
-        index=0,
-    )
-    if server_choice == "🧪 로컬 mock 서버 (테스트용)":
-        BASE_URL = "http://127.0.0.1:5000"
-        st.caption("mock_server.py를 먼저 터미널에서 실행해두세요.")
-    else:
-        BASE_URL = "https://medicinemisuseprevention.onrender.com"
-    st.caption(f"현재 연결 주소: `{BASE_URL}`")
+    st.caption(f"연결 서버: `{BASE_URL}`")
 
     st.divider()
     st.subheader("📋 메뉴")
